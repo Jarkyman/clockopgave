@@ -7,18 +7,16 @@ let dateTime = new Date;
 let ddValue = '';
 
 const dropdown = document.getElementById('dropdown');
-const time = document.getElementById('time');
+const pbTime = document.getElementById('time');
 
-setInterval(function(){
+setInterval(function () {
   if (ddValue) {
-    if (ddValue !== '-select continent-') {
-      worldTimeApiFetch(url + ddValue)
-    }
+    worldTimeApiFetch(url + ddValue)
   }
 }, 1000);
 
 dropdown.addEventListener('change', () => {
-  console.log(dropdown.value);
+  //console.log(dropdown.value);
   ddValue = dropdown.value;
 });
 
@@ -26,7 +24,7 @@ const worldTimeApiFetch = function (url) {
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       getTime(res.datetime);
     });
 };
@@ -36,9 +34,9 @@ function getTime(time) {
   dateTime = dateTime.split('T')[1];
   dateTime = dateTime.split('.')[0];
 
-  console.log(dateTime);
+  // console.log(dateTime);
 
-  this.time.innerText = dateTime;
+  pbTime.innerText = dateTime;
 }
 
 
