@@ -8,6 +8,9 @@ let ddValue = '';
 
 const dropdown = document.getElementById('dropdown');
 const pbTime = document.getElementById('time');
+const pbUTC = document.getElementById('UTC');
+const pbTimeCon = document.getElementById('timezone-continent');
+const pbTimeCity = document.getElementById('timezone-city')
 
 setInterval(function () {
   if (ddValue) {
@@ -24,8 +27,12 @@ const worldTimeApiFetch = function (url) {
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
-      //console.log(res);
+      console.log(res);
       getTime(res.datetime);
+      pbUTC.innerText = 'utc ' + res.utc_offset;
+      pbTimeCon.innerText = res.timezone.split('/')[0];
+      pbTimeCity.innerText = res.timezone.split('/')[1].replace('_',' ');
+
     });
 };
 
@@ -37,6 +44,8 @@ function getTime(time) {
   // console.log(dateTime);
 
   pbTime.innerText = dateTime;
+
 }
+
 
 
